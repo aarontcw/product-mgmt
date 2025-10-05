@@ -4,6 +4,7 @@ import { api } from "../../api";
 import Layout from "../../components/Layout";
 import { useAuth } from "../../store/auth";
 import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 type Product = {
   id: string;
@@ -16,26 +17,42 @@ type Product = {
 export default function AdminProductsPage() {
   const { role } = useAuth();
   const nav = useNavigate();
+
   useEffect(() => {
     if (role !== "ADMIN") nav("/login");
   }, [role, nav]);
+
   const { data, refetch, isLoading } = useQuery<Product[]>({
     queryKey: ["admin-products"],
     queryFn: async () => (await api.get("/products/admin/all")).data,
   });
-  const del = async (id: string) => {
-    if (!confirm("Delete?")) return;
-    await api.delete(`/products/${id}`);
-    refetch();
+
+  const del = async (id: string, name: string) => {
+    const confirmDelete = confirm(
+      `Are you sure you want to remove the product "${name}"? This action cannot be undone.`
+    );
+    if (!confirmDelete) return;
+    try {
+      await api.delete(`/products/${id}`);
+      toast.success(`"${name}" has been successfully removed.`);
+      refetch();
+    } catch {
+      toast.error("Failed to delete product. Please try again.");
+    }
   };
+
   return (
     <Layout>
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">Admin • Products</h1>
-        <Link to="/admin/products/new" className="underline">
-          + New
+        <h1 className="text-2xl font-bold">All Products</h1>
+        <Link
+          to="/admin/products/new"
+          className="underline text-indigo-600 font-semibold"
+        >
+          + Add a Product
         </Link>
       </div>
+
       {isLoading ? (
         <p>Loading…</p>
       ) : (
@@ -59,14 +76,17 @@ export default function AdminProductsPage() {
                 <td className="text-center">{p.stock}</td>
                 <td className="text-center">{p.isActive ? "✅" : "❌"}</td>
                 <td className="text-right p-2 space-x-3">
-                  <Link to={`/admin/products/${p.id}`} className="underline">
-                    Edit
+                  <Link
+                    to={`/admin/products/${p.id}`}
+                    className="underline text-blue-600"
+                  >
+                    Update Product
                   </Link>
                   <button
-                    onClick={() => del(p.id)}
+                    onClick={() => del(p.id, p.name)}
                     className="underline text-red-600"
                   >
-                    Delete
+                    Remove Product
                   </button>
                 </td>
               </tr>

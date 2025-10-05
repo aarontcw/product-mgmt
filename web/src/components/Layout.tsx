@@ -6,7 +6,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { token, role, clearAuth } = useAuth();
   const { items } = useCart();
   const nav = useNavigate();
-
   const cartCount = items.reduce((s, i) => s + i.quantity, 0);
 
   return (
@@ -17,17 +16,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             ProductStore
           </Link>
           <nav className="flex items-center gap-4">
-            <Link to="/" className="hover:text-indigo-600">
-              Shop
-            </Link>
-            <Link to="/cart" className="hover:text-indigo-600">
-              Cart
-              {cartCount ? (
-                <span className="ml-1 text-xs bg-indigo-600 text-white px-2 py-0.5 rounded-full">
-                  {cartCount}
-                </span>
-              ) : null}
-            </Link>
+            {role !== "ADMIN" && (
+              <>
+                <Link to="/" className="hover:text-indigo-600">
+                  Shop
+                </Link>
+                <Link to="/cart" className="hover:text-indigo-600">
+                  Cart
+                  {cartCount ? (
+                    <span className="ml-1 text-xs bg-indigo-600 text-white px-2 py-0.5 rounded-full">
+                      {cartCount}
+                    </span>
+                  ) : null}
+                </Link>
+              </>
+            )}
             {role === "ADMIN" && (
               <Link to="/admin/products" className="hover:text-indigo-600">
                 Admin
