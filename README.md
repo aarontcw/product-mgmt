@@ -52,22 +52,22 @@ npm run dev <br>
 
 ### 🧩 Admin
 
-<li> Add, update, and delete products </li>
-<li> View current stock and product catalog </li>
-<li> Automatic delisting when stock reaches zero </li>
+- Add, update, and delete products
+- View current stock and product catalog
+- Automatic delisting when stock reaches zero
 
 ### 🛍️ User
 
-<li> Browse available products </li>
-<li> Add to cart and adjust item quantities dynamically </li>
-<li> View remaining stock in real time </li>
-<li> Checkout to trigger automatic stock updates </li>
+- Browse available products
+- Add to cart and adjust item quantities dynamically
+- View remaining stock in real time
+- Checkout to trigger automatic stock updates
 
 ### 🔐 Authentication
 
-<li> JWT-based login </li>
-<li> Admin and User roles with distinct access rights </li>
-<li> Admin access hides user navigation (Shop / Cart) </li>
+- JWT-based login
+- Admin and User roles with distinct access rights
+- Admin access hides user navigation (Shop / Cart)
 
 ## 🧾 API Endpoints (Highlights)
 
@@ -84,15 +84,15 @@ npm run dev <br>
 
 ### 1️⃣ API Documentation
 
-<li> Auto-generated Swagger UI available at: <br>
-👉 http://localhost:3000/docs </li>
-<li> Displays all endpoints, DTOs, and authentication details for testing. </li>
+- Auto-generated Swagger UI available at: <br>
+👉 http://localhost:3000/docs
+- Displays all endpoints, DTOs, and authentication details for testing.
 
 ### 2️⃣ Code Documentation
 
-<li> Each service, controller, and entity contains JSDoc-style comments for maintainability. </li>
-<li> Inline comments provided in key logic sections (e.g., checkout flow, authentication guard). </li>
-<li> Folder structure: <br>
+- Each service, controller, and entity contains JSDoc-style comments for maintainability.
+- Inline comments provided in key logic sections (e.g., checkout flow, authentication guard).
+- Folder structure: <br>
 server/
 ├─ src/
 │  ├─ auth/
@@ -100,23 +100,21 @@ server/
 │  ├─ orders/
 │  ├─ entities/
 │  └─ ...
-</li>
 
 ### 3️⃣ Testing
 
-<li> Unit Testing: Uses Jest for controllers and services. </li>
-<li> Run tests with: <br>
+- Unit Testing: Uses Jest for controllers and services.
+- Run tests with: <br>
 npm run test
-</li>
-<li> Integration Testing: Example test cases provided for /products endpoints. </li>
+- Integration Testing: Example test cases provided for /products endpoints.
 
 ## 🗄️ Database Schema
 
 ### Entity Relationships
 
-<li> User 1 — * Order </li>
-<li> Order 1 — * OrderItem </li>
-<li> Product 1 — * OrderItem </li>
+- User 1 — * Order
+- Order 1 — * OrderItem
+- Product 1 — * OrderItem
 
 ### Tables
 
@@ -127,50 +125,21 @@ npm run test
 | **orders**      | id, userId, createdAt                 | Checkout records               |
 | **order_items** | id, orderId, productId, quantity      | Line items in each order       |
 
-## 🧭 ER Diagram
-
-┌────────────┐ ┌────────────┐ ┌──────────────┐
-│ users │ 1 _ │ orders │ 1 _ │ order_items │
-│────────────│─────────│────────────│─────────│──────────────│
-│ id │ │ id │ │ id │
-│ email │ │ user_id FK │ │ order_id FK │
-│ password │ │ createdAt │ │ product_id FK│
-│ role │ └────────────┘ │ quantity │
-└────────────┘ └──────────────┘
-↑
-│ \*  
- │
-│
-┌────────────┐
-│ products │
-│────────────│
-│ id │
-│ name │
-│ priceCents │
-│ stock │
-│ isActive │
-└────────────┘
-
 ## 🧠 Notes
 
-<ul>
-<li> Ensure Docker is running before starting the backend. </li>
-<li> Default ports: <br>
-<ul>
-    <li> Backend → http://localhost:3000 </li>
-    <li> Frontend → http://localhost:5173 </li>
-</ul>
-</li>
-<li> Update .env files in both server and web folders if ports or DB configs differ. </li>
-</ul>
+- Ensure Docker is running before starting the backend.
+- Default ports: <br>
+    - Backend → http://localhost:3000
+    - Frontend → http://localhost:5173
+- Update .env files in both server and web folders if ports or DB configs differ.
 
 ## 🧑‍💻 Developer Info
 
 Built with ❤️ using:
 
-<li> TypeScript </li>
-<li> NestJS CLI </li>
-<li> React + Vite </li>
-<li> TailwindCSS </li>
-<li> PostgreSQL </li>
-<li> MikroORM </li>
+- TypeScript
+- NestJS CLI
+- React + Vite
+- TailwindCSS
+- PostgreSQL
+- MikroORM
