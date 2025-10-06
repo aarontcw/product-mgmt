@@ -12,6 +12,8 @@ import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 
+import { OrdersController } from './orders/orders.controller';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -33,5 +35,6 @@ import { OrdersModule } from './orders/orders.module';
     ProductsModule,
     OrdersModule,
   ],
+  controllers: [OrdersController],
 })
 export class AppModule {}
