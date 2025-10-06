@@ -85,7 +85,7 @@ npm run dev <br>
 ### 1️⃣ API Documentation
 
 - Auto-generated Swagger UI available at: <br>
-👉 http://localhost:3000/docs
+  👉 http://localhost:3000/docs
 - Displays all endpoints, DTOs, and authentication details for testing.
 
 ### 2️⃣ Code Documentation
@@ -93,28 +93,28 @@ npm run dev <br>
 - Each service, controller, and entity contains JSDoc-style comments for maintainability.
 - Inline comments provided in key logic sections (e.g., checkout flow, authentication guard).
 - Folder structure: <br>
-server/
-├─ src/
-│  ├─ auth/
-│  ├─ products/
-│  ├─ orders/
-│  ├─ entities/
-│  └─ ...
+  server/
+  ├─ src/
+  │ ├─ auth/
+  │ ├─ products/
+  │ ├─ orders/
+  │ ├─ entities/
+  │ └─ ...
 
 ### 3️⃣ Testing
 
 - Unit Testing: Uses Jest for controllers and services.
 - Run tests with: <br>
-npm run test
+  npm run test
 - Integration Testing: Example test cases provided for /products endpoints.
 
 ## 🗄️ Database Schema
 
 ### Entity Relationships
 
-- User 1 — * Order
-- Order 1 — * OrderItem
-- Product 1 — * OrderItem
+- User 1 — \* Order
+- Order 1 — \* OrderItem
+- Product 1 — \* OrderItem
 
 ### Tables
 
@@ -125,12 +125,16 @@ npm run test
 | **orders**      | id, userId, createdAt                 | Checkout records               |
 | **order_items** | id, orderId, productId, quantity      | Line items in each order       |
 
+## 🧭 ER Diagram
+
+![Database Schema Diagram](./docs/db-schema.png)
+
 ## 🧠 Notes
 
 - Ensure Docker is running before starting the backend.
 - Default ports: <br>
-    - Backend → http://localhost:3000
-    - Frontend → http://localhost:5173
+  - Backend → http://localhost:3000
+  - Frontend → http://localhost:5173
 - Update .env files in both server and web folders if ports or DB configs differ.
 
 ## 🧑‍💻 Developer Info
@@ -143,3 +147,94 @@ Built with ❤️ using:
 - TailwindCSS
 - PostgreSQL
 - MikroORM
+
+---
+
+## 🖼️ Application Walkthrough
+
+### 🧩 1️⃣ Admin Journey
+
+#### 🔐 Admin Login
+
+The admin logs in using their credentials at **`/login`** to manage the product catalog.
+
+![Admin Login](./docs/screenshots/admin-login.png)
+
+---
+
+#### ➕ Add New Product
+
+After logging in, the admin navigates to **Add New Product**.  
+They can specify product name, description, price, and stock quantity.  
+When saved, the product is added to the catalog and instantly visible to users.
+
+![Add New Product](./docs/screenshots/admin-add-product.png)
+
+---
+
+#### ✏️ Update Product Stock
+
+When a product’s quantity changes, the admin can **update stock quantity** directly from the dashboard.  
+The change reflects instantly on the user-facing product page.
+
+![Update Product Stock](./docs/screenshots/admin-update-product.png)
+
+---
+
+### 🛍️ 2️⃣ User Journey
+
+#### 🔐 User Login
+
+A user logs in with their own account at **`/login`**, which redirects them to the **Shop** page.
+
+![User Login](./docs/screenshots/user-login.png)
+
+---
+
+#### 🛒 Browse Products
+
+Users can view all available products, each showing name, description, price, and **remaining stock**.  
+Only active and in-stock products are displayed.
+
+![Browse Products](./docs/screenshots/user-browse-products.png)
+
+---
+
+#### 🛍️ Add to Cart
+
+Users add items to their cart, receiving an on-screen confirmation.  
+The cart counter updates dynamically as items are added.
+
+![Add to Cart](./docs/screenshots/user-add-to-cart.png)
+
+---
+
+#### 🧾 Shopping Cart
+
+The **Cart Page** displays all selected items, with adjustable quantities and automatic total recalculation.  
+Users can remove items or proceed to checkout.
+
+![Shopping Cart](./docs/screenshots/user-cart.png)
+
+---
+
+#### 💳 Checkout
+
+Upon checkout, users receive a confirmation message —  
+their order has been processed, and stock levels update automatically.
+
+![Checkout Confirmation](./docs/screenshots/user-checkout.png)
+
+---
+
+## 🧠 Summary
+
+This walkthrough demonstrates:
+
+- ✅ Secure login for both Admin and User roles
+- ✅ Admin-managed product catalog
+- ✅ Real-time stock tracking
+- ✅ User-friendly shopping flow (add, update, remove, checkout)
+- ✅ Dynamic frontend updates synced with backend database
+
+---
