@@ -92,14 +92,6 @@ npm run dev <br>
 
 - Each service, controller, and entity contains JSDoc-style comments for maintainability.
 - Inline comments provided in key logic sections (e.g., checkout flow, authentication guard).
-- Folder structure: <br>
-  server/
-  ├─ src/
-  │ ├─ auth/
-  │ ├─ products/
-  │ ├─ orders/
-  │ ├─ entities/
-  │ └─ ...
 
 ### 3️⃣ Testing
 
